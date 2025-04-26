@@ -19,7 +19,7 @@ resource "aws_security_group" "private" {
   name = "allow_public"
   vpc_id = aws_vpc.terra-demo.id
   ingress {
-    cidr_blocks = ["${aws_instance.public_instance.private_ip}/32"]
+    cidr_blocks = [aws_subnet.terra-demo-public-subnet.cidr_block] 
     from_port = 22
     to_port = 22
     protocol = "tcp"
