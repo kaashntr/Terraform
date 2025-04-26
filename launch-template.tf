@@ -1,5 +1,5 @@
 resource "aws_launch_template" "launch_template" {
-  image_id      = "/aws/service/canonical/ubuntu/server/22.04/stable/current/amd64/hvm/ebs-gp2/ami-id"
+  image_id      = "ami-084568db4383264d4"
   instance_type = "t2.micro"
 
   key_name = aws_key_pair.public-key.key_name
