@@ -19,5 +19,5 @@ resource "aws_nat_gateway" "terra-demo-nat-gateway" {
     Name = "terra-demo-nat-gateway"
   }
 
-  depends_on = [aws_internet_gateway.terra-demo-igw, aws_instance.public_instance]
+  depends_on = [aws_internet_gateway.terra-demo-igw]
 }

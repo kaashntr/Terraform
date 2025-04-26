@@ -30,7 +30,7 @@ resource "aws_security_group" "private" {
     to_port = 0
     protocol = "-1" 
   }
-  depends_on = [ aws_instance.public_instance ]
+  
 }
 resource "tls_private_key" "key" {
   algorithm = "RSA"
