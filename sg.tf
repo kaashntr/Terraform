@@ -4,14 +4,14 @@ resource "aws_security_group" "lt-sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [aws_subnet.terra-demo-private-subnet.cidr_block]
+    cidr_blocks = [aws_vpc.terra-demo.cidr_block]
     description = "SSH access from private subnet"
   }
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = [aws_subnet.terra-demo-private-subnet.cidr_block]
+    cidr_blocks = [aws_vpc.terra-demo.cidr_block]
     description = "HTTP access from private subnet"
   }
   egress {
