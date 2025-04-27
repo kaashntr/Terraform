@@ -19,9 +19,15 @@ resource "aws_security_group" "private" {
   name = "allow_public"
   vpc_id = aws_vpc.terra-demo.id
   ingress {
-    cidr_blocks = [aws_subnet.terra-demo-public-subnet.cidr_block] 
+    cidr_blocks = [aws_subnet.terra-demo-private-subnet.cidr_block] 
     from_port = 22
     to_port = 22
+    protocol = "tcp"
+  }
+  ingress {
+    cidr_blocks = [aws_subnet.terra-demo-private-subnet.cidr_block] 
+    from_port = 80
+    to_port = 80
     protocol = "tcp"
   }
   egress {
@@ -31,6 +37,20 @@ resource "aws_security_group" "private" {
     protocol = "-1" 
   }
   
+}
+resource "aws_security_group" "elb" {
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port = 80
+    to_port = 80
+    protocol = "tcp"
+  }
+  egress {
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+  }
 }
 resource "tls_private_key" "key" {
   algorithm = "RSA"

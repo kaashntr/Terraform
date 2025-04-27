@@ -2,6 +2,7 @@ resource "aws_lb" "nlb" {
   name               = "nlb"
   internal           = false 
   load_balancer_type = "network"
+  security_groups    = [aws_security_group.elb.id]
   subnets            = [aws_subnet.terra-demo-public-subnet.id]  
 
   enable_deletion_protection = false
