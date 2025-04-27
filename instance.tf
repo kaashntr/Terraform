@@ -1,5 +1,5 @@
 resource "aws_instance" "free_tier_example" {
-  ami           = "ami-0c55b159cbfafe1f0"
+  ami           = "ami-084568db4383264d4"
   instance_type = "t2.micro"               
 
   
