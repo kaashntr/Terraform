@@ -18,7 +18,7 @@ resource "aws_security_group" "lt-sg" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"]
     description = "Allow all outbound traffic"
   }
   
@@ -29,14 +29,33 @@ resource "aws_security_group" "elb-sg" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"]
     description = "HTTP access from public internet"
   }
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Allow all outbound traffic"
+  }
+  
+}
+
+resource "aws_security_group" "bastion-sg" {
+  vpc_id = aws_vpc.terra-demo.id
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["160.238.124.107/32"]
+    description = "HTTP access from public internet"
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
     description = "Allow all outbound traffic"
   }
   

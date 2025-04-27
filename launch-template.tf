@@ -7,13 +7,14 @@ resource "aws_launch_template" "lt" {
   instance_type = "t2.micro"
 
   key_name = aws_key_pair.public-key.key_name
-  user_data = <<-EOF
+  user_data = base64encode(<<-EOF
               #!/bin/bash
               apt-get -y update
               apt-get -y install nginx
               echo "Hello, World!" > /var/www/html/index.html
               systemctl start nginx
               EOF
+  )
   network_interfaces {
     associate_public_ip_address = false
     security_groups             = [aws_security_group.lt-sg.id]
