@@ -4,7 +4,6 @@ resource "aws_internet_gateway" "terra-demo-igw" {
   tags = {
     Name = "terra-demo-igw"
   }
-  depends_on = [aws_vpc.terra-demo, aws_subnet.terra-demo-public-subnet]
 }
 
 resource "aws_eip" "eip" {
