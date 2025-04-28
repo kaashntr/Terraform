@@ -17,7 +17,7 @@ resource "aws_security_group" "lt-sg" {
   ingress {
     from_port   = 80
     to_port     = 80
-    protocol    = "-1"
+    protocol    = "tcp"
     security_groups = [ aws_security_group.elb-sg.id ]
     description = "HTTP access from private subnet"
   }
