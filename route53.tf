@@ -8,5 +8,5 @@ resource "aws_route53_record" "cname_record" {
   
   type    = "CNAME"
   ttl     = 300
-  records = [aws_lb.nlb.nlb.dns_name]
+  records = [aws_lb.nlb.dns_name]
 }
